@@ -1,0 +1,10 @@
+{
+  "dummy": {
+    "accuracy": 0.6291,
+    "macro_f1": 0.3862
+  },
+  "baseline": {
+    "accuracy": 0.8422,
+    "macro_f1": 0.8262
+  }
+}
