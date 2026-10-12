@@ -1,0 +1,17 @@
+{
+  "TF-IDF + LogReg": {
+    "accuracy": 0.8432,
+    "macro_f1": 0.8279,
+    "negative_recall": 0.734
+  },
+  "LSTM": {
+    "accuracy": 0.8474,
+    "macro_f1": 0.8348,
+    "negative_recall": 0.771
+  },
+  "DistilBERT": {
+    "accuracy": 0.8836,
+    "macro_f1": 0.8741,
+    "negative_recall": 0.822
+  }
+}
