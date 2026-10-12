@@ -1,0 +1,17 @@
+{
+  "accuracy": 0.8819,
+  "macro_f1": 0.872,
+  "train_reviews": 181032,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.3347,
+      "val_macro_f1": 0.8647
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.2369,
+      "val_macro_f1": 0.872
+    }
+  ]
+}
