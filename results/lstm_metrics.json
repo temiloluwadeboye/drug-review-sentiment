@@ -1,0 +1,32 @@
+{
+  "accuracy": 0.8471,
+  "macro_f1": 0.8342,
+  "train_reviews": 181032,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.4749,
+      "val_macro_f1": 0.7996
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.3649,
+      "val_macro_f1": 0.8269
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.3184,
+      "val_macro_f1": 0.827
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.2815,
+      "val_macro_f1": 0.8342
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.2486,
+      "val_macro_f1": 0.8297
+    }
+  ]
+}
