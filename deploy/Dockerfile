@@ -1,9 +1,11 @@
-# Recipe for the computer that runs the online demo (a Hugging Face Space).
+# Recipe for running the demo in a Docker container on any server or cloud:
+#   docker build -f deploy/Dockerfile -t drug-review-sentiment .
+#   docker run -p 8501:8501 drug-review-sentiment
 
 # 1. Start from a small Linux image with Python 3.12 (the version the models were built with)
 FROM python:3.12-slim
 
-# 2. Hugging Face runs the app as a normal user (id 1000), not as admin
+# 2. Run the app as a normal user, not as admin (safer)
 RUN useradd -m -u 1000 user
 USER user
 ENV HOME=/home/user \
