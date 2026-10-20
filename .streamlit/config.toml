@@ -1,2 +1,6 @@
 [browser]
 gatherUsageStats = false
+
+[theme]
+# Accent colour for the toggle, the Predict button and other highlighted controls
+primaryColor = "#1F9D55"
