@@ -8,6 +8,7 @@ Shared by the API (app/api.py) and the web page (app/streamlit_app.py).
 """
 
 import json
+import os
 from functools import lru_cache
 from pathlib import Path
 
@@ -20,6 +21,24 @@ MODEL_DIR = Path("models")
 MODELS = ("baseline", "lstm", "distilbert")
 LABELS = ("negative", "positive")
 
+# The trained models are too big for GitHub, so they live on Hugging Face Hub.
+HF_MODEL_REPO = os.environ.get("HF_MODEL_REPO", "temiloluwadeboye/drug-review-sentiment-models")
+REQUIRED_FILES = ("baseline.joblib", "lstm.pt", "lstm_vocab.json", "distilbert/model.safetensors")
+
+
+@lru_cache(maxsize=None)
+def ensure_models():
+    """Download the models from Hugging Face Hub if they aren't on this machine yet.
+
+    On a laptop that trained the models this does nothing. On a fresh server
+    (like the online demo) it downloads them once into models/.
+    """
+    if all((MODEL_DIR / name).exists() for name in REQUIRED_FILES):
+        return
+    from huggingface_hub import snapshot_download
+
+    snapshot_download(repo_id=HF_MODEL_REPO, local_dir=MODEL_DIR)
+
 
 # ---------------------------------------------------------------------------
 # Loading: each function runs once; @lru_cache hands back the same loaded
@@ -28,11 +47,13 @@ LABELS = ("negative", "positive")
 
 @lru_cache(maxsize=None)
 def load_baseline():
+    ensure_models()
     return joblib.load(MODEL_DIR / "baseline.joblib")
 
 
 @lru_cache(maxsize=None)
 def load_lstm():
+    ensure_models()
     with open(MODEL_DIR / "lstm_vocab.json") as f:
         vocab = json.load(f)
     model = lstm.LSTMClassifier(len(vocab))
@@ -47,6 +68,7 @@ def load_distilbert():
     # to import on a laptop CPU, so only pay that cost when DistilBERT is used.
     from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
+    ensure_models()
     tokenizer = AutoTokenizer.from_pretrained(MODEL_DIR / "distilbert")
     model = AutoModelForSequenceClassification.from_pretrained(MODEL_DIR / "distilbert")
     model.eval()

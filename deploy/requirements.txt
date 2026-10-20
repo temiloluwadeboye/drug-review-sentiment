@@ -1,0 +1,9 @@
+# Pinned to the versions the models were trained and saved with, so they load identically online.
+torch==2.14.1+cpu
+transformers==5.19.0
+scikit-learn==1.9.1
+joblib==1.6.0
+pandas==3.0.6
+numpy==2.5.4
+streamlit==1.65.0
+huggingface_hub==2.2.0
