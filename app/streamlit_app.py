@@ -25,7 +25,7 @@ EXAMPLES = {
 }
 
 st.set_page_config(page_title="Drug Review Sentiment", page_icon="💊")
-st.title("💊 Drug Review Sentiment")
+st.title("Drug Review Sentiment")
 st.write(
     "Type a patient's review of a medication and the model predicts whether "
     "the patient was satisfied (positive) or not (negative)."
